@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="measurements" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="Measurements"/>
+  <localVariables>
+    <variable id="c_inactive">
+      <descriptions defaultDescription="c_inactive"/>
+      <variableProperties defaultValue="0" mandatory="false">
+        <valueDomain type="AttributeValue">
+          <attribute name="inactive"/>
+        </valueDomain>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="s0001142741trial.xsdemo.hello.data::measurements" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="NEO_3KDKYA4JI7SBY1TZEVG6QA348" columnObjectName="s0001142741trial.xsdemo.hello.data::measurements"/>
+    </DataSource>
+    <DataSource id="s0001142741trial.xsdemo.hello.data::sensors" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="NEO_3KDKYA4JI7SBY1TZEVG6QA348" columnObjectName="s0001142741trial.xsdemo.hello.data::sensors"/>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:JoinView" id="Measurements" cardinality="CN_1" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions>
+        <comment text=""/>
+      </descriptions>
+      <viewAttributes>
+        <viewAttribute id="id"/>
+        <viewAttribute id="sensorId"/>
+        <viewAttribute id="measuredAt"/>
+        <viewAttribute id="value"/>
+        <viewAttribute id="unit"/>
+        <viewAttribute id="device"/>
+        <viewAttribute id="description"/>
+        <viewAttribute id="type"/>
+        <viewAttribute id="inactive"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#s0001142741trial.xsdemo.hello.data::measurements">
+        <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="sensorId" source="sensorId"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="measuredAt" source="measuredAt"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="value" source="value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="unit" source="unit"/>
+      </input>
+      <input node="#s0001142741trial.xsdemo.hello.data::sensors">
+        <mapping xsi:type="Calculation:AttributeMapping" target="device" source="device"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="type" source="type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="inactive" source="inactive"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="sensorId" source="id"/>
+      </input>
+      <joinAttribute name="sensorId"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Measurements">
+    <descriptions/>
+    <attributes>
+      <attribute id="measuredAt" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="measuredAt"/>
+        <keyMapping columnObjectName="Measurements" columnName="measuredAt"/>
+      </attribute>
+      <attribute id="id" key="true" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="id"/>
+        <keyMapping columnObjectName="Measurements" columnName="id"/>
+      </attribute>
+      <attribute id="sensorId" order="3" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="sensorId"/>
+        <keyMapping columnObjectName="Measurements" columnName="sensorId"/>
+      </attribute>
+      <attribute id="unit" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="unit"/>
+        <keyMapping columnObjectName="Measurements" columnName="unit"/>
+      </attribute>
+      <attribute id="device" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="device"/>
+        <keyMapping columnObjectName="Measurements" columnName="device"/>
+      </attribute>
+      <attribute id="description" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="description"/>
+        <keyMapping columnObjectName="Measurements" columnName="description"/>
+      </attribute>
+      <attribute id="type" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="type"/>
+        <keyMapping columnObjectName="Measurements" columnName="type"/>
+      </attribute>
+      <attribute id="inactive" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="inactive"/>
+        <localVariable>#c_inactive</localVariable>
+        <keyMapping columnObjectName="Measurements" columnName="inactive"/>
+      </attribute>
+      <attribute id="value_1" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Measurements" columnName="value"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="value" order="4" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="value"/>
+        <measureMapping columnObjectName="Measurements" columnName="value"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="30" y="120"/>
+        <rectangleSize/>
+      </shape>
+      <shape expanded="true" modelObjectName="Measurements" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="3" y="234"/>
+        <rectangleSize height="30" width="140"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

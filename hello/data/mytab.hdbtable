@@ -1,0 +1,8 @@
+table.schemaName = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+table.tableType = COLUMNSTORE;
+table.description = "My Table";
+table.columns = [
+          {name = "id"; sqlType = NVARCHAR; nullable = false; length=10;},
+          {name = "name"; sqlType = NVARCHAR; nullable = false; length=30;}
+];
+table.primaryKey.pkcolumns = ["id"];

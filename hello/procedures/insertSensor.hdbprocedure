@@ -1,0 +1,35 @@
+PROCEDURE "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.procedures::insertSensor" 
+  ( IN  inrow "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.data::sensors",
+    OUT error "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.data::error" )
+  LANGUAGE SQLSCRIPT
+  SQL SECURITY INVOKER
+  DEFAULT SCHEMA NEO_3KDKYA4JI7SBY1TZEVG6QA348
+  AS
+BEGIN
+
+/*****************************
+  Write your procedure logic
+*****************************/
+DECLARE lv_id string;
+DECLARE lv_device string;
+DECLARE lv_type string;
+DECLARE lv_lastMeasurement int;
+DECLARE lv_description string;
+DECLARE lv_userName string;
+DECLARE lv_inactive string;
+/* Get values from IN parameter */
+SELECT * INTO lv_id, lv_device, lv_type, lv_lastMeasurement, lv_description, lv_userName, lv_inactive FROM :inrow;
+
+SELECT CURRENT_USER INTO lv_userName FROM DUMMY; 
+
+insert into "s0001142741trial.xsdemo.hello.data::sensors"
+  values ("s0001142741trial.xsdemo.hello.data::SensorID".NEXTVAL, lv_device, lv_type, lv_lastMeasurement, lv_description, lv_userName, lv_inactive);
+
+/* Currently don't return an error */
+if 1 = 2 then 
+    error = select 400 as http_status_code, 
+            '' error_message, 
+            '' detail from dummy; 
+end if;
+
+END;

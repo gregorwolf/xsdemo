@@ -1,0 +1,6 @@
+role s0001142741trial.xsdemo.locationproduct::model_access {
+    application privilege: s0001142741trial.xsdemo.locationproduct::Basic;
+    catalog schema "NEO_3KDKYA4JI7SBY1TZEVG6QA348": SELECT, INSERT;
+    sql object s0001142741trial.xsdemo.locationproduct.data::locations: SELECT,UPDATE,INSERT;    
+    sql object s0001142741trial.xsdemo.locationproduct.data::products: SELECT,UPDATE,INSERT,DELETE;
+}  

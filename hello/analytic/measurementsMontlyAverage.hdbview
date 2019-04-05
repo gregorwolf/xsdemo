@@ -1,0 +1,5 @@
+schema = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+query = "SELECT \"sensorId\", \"unit\", min(\"storedAt\") AS \"storedAt\", AVG(\"value\") AS \"value\"
+    FROM \"NEO_3KDKYA4JI7SBY1TZEVG6QA348\".\"s0001142741trial.xsdemo.hello.data::measurements\"
+    GROUP BY \"sensorId\", \"unit\", SERIES_ROUND(\"storedAt\", 'INTERVAL 1 MONTH', ROUND_DOWN)
+    ORDER BY 1, 2, 3;";

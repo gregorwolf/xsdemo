@@ -1,0 +1,50 @@
+PROCEDURE "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.procedures::insertMeasurement" 
+  ( IN row "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.data::measurements",
+    OUT error "NEO_3KDKYA4JI7SBY1TZEVG6QA348"."s0001142741trial.xsdemo.hello.data::error" )
+  LANGUAGE SQLSCRIPT
+  SQL SECURITY INVOKER
+  DEFAULT SCHEMA NEO_3KDKYA4JI7SBY1TZEVG6QA348
+  AS
+BEGIN
+
+/*****************************
+  Write your procedure logic
+*****************************/
+declare id bigint;
+declare sensorCount int;
+declare lv_id bigint;
+declare storedAt TIMESTAMP;
+declare measuredAt TIMESTAMP;
+declare sensorId bigint;
+declare value double;
+declare unit string;
+
+/* select on single fields did not fill variables */
+select *
+     into id, storedAt, sensorId, value, unit, measuredAt
+  from :row;
+  
+/* do we have a valid sensorId? */
+select count(id) into sensorCount
+  from "s0001142741trial.xsdemo.hello.data::sensors" 
+  where "id" = sensorId;
+
+if sensorCount = 1 then
+    /* get next Measurement ID so we can insert that into lastMeasurement column of Sensors */
+    select "s0001142741trial.xsdemo.hello.data::MeasurementID".NEXTVAL into lv_id from dummy;
+    
+    insert into "s0001142741trial.xsdemo.hello.data::measurements"
+      values (lv_id, CURRENT_TIMESTAMP, sensorId, value, unit, measuredAt);
+    
+    update "s0001142741trial.xsdemo.hello.data::sensors"
+      set "lastMeasurement" = lv_id
+      where "id" = sensorId;
+    
+    /* Currently don't return an error */
+else
+    error = select 400 as http_status_code, 
+            'Provided Sensor ID does not exist' error_message, 
+            'Please create the Sensor first and then send Measurements' detail from dummy; 
+end if;
+
+END;

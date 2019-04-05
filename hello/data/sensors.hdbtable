@@ -1,0 +1,13 @@
+table.schemaName = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+table.tableType = COLUMNSTORE;
+table.description = "Temperature Sensors";
+table.columns = [
+          {name = "id";          sqlType = BIGINT;    nullable = false;},
+          {name = "device";      sqlType = NVARCHAR;  nullable = false; length=50;},
+          {name = "type";        sqlType = NVARCHAR;  nullable = false; length=50;},
+          {name = "description"; sqlType = NVARCHAR;  nullable = true; length=250;},
+          {name = "lastMeasurement";  sqlType = BIGINT;    nullable = true;},
+          {name = "userName";         sqlType = NVARCHAR;  nullable = true; length=256;},
+          {name = "inactive";         sqlType = NVARCHAR;  nullable = true; length=1;}
+];
+table.primaryKey.pkcolumns = ["id"];

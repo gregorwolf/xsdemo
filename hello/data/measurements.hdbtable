@@ -1,0 +1,12 @@
+table.schemaName = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+table.tableType = COLUMNSTORE;
+table.description = "Temperature Measurements";
+table.columns = [
+          {name = "id";       sqlType = BIGINT;    nullable = false;},
+          {name = "storedAt"; sqlType = TIMESTAMP; nullable = false;},
+          {name = "measuredAt"; sqlType = TIMESTAMP; nullable = false;},
+          {name = "sensorId"; sqlType = BIGINT;    nullable = false;},
+          {name = "value";    sqlType = DOUBLE;    nullable = false;},
+          {name = "unit";     sqlType = NVARCHAR;  nullable = false; length=30;}
+];
+table.primaryKey.pkcolumns = ["id"];

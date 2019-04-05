@@ -1,0 +1,11 @@
+table.schemaName = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+
+table.columns = [ 
+          {name = "id";          sqlType = BIGINT;   },
+          {name = "device";      sqlType = NVARCHAR;  length=50;},
+          {name = "type";        sqlType = NVARCHAR;  length=50;},
+          {name = "description"; sqlType = NVARCHAR;  length=250;},
+          {name = "lastMeasurement";  sqlType = BIGINT;    },
+          {name = "userName";         sqlType = NVARCHAR; length=256;},
+          {name = "inactive";         sqlType = NVARCHAR; length=1;}
+];

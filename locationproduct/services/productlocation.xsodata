@@ -1,0 +1,9 @@
+service {
+    "s0001142741trial.xsdemo.locationproduct.data::locations" 
+        navigates ("location_products" as "location_products")
+		create using "s0001142741trial.xsdemo.locationproduct.services:jsexit.xsjslib::insert_location";
+    "s0001142741trial.xsdemo.locationproduct.data::products"
+		create using "s0001142741trial.xsdemo.locationproduct.services:jsexit.xsjslib::insert_product";
+    association "location_products" principal "locations"("id") multiplicity "1"
+        dependent "products"("locationId") multiplicity "*";
+}

@@ -1,0 +1,9 @@
+role s0001142741trial.xsdemo.hello::new_model_access {
+    application privilege: s0001142741trial.xsdemo.hello::Basic;
+    // catalog schema "NEO_3KDKYA4JI7SBY1TZEVG6QA348": SELECT, INSERT;
+    // sql object s0001142741trial.xsdemo.hello.data::mytab: SELECT,INSERT;
+    // sql object s0001142741trial.xsdemo.hello.data::sensors: SELECT,INSERT,UPDATE;
+    // sql object s0001142741trial.xsdemo.hello.data::measurements: SELECT,INSERT;
+    // sql object s0001142741trial.xsdemo.hello.procedures::insertMeasurement: EXECUTE;
+    // sql object s0001142741trial.xsdemo.hello.procedures::insertSensor: EXECUTE;
+}

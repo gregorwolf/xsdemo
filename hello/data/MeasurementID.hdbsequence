@@ -1,0 +1,6 @@
+schema= "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+start_with= 1;
+minvalue= 1;
+nominvalue=true;
+cycles= false;
+depends_on_table="s0001142741trial.xsdemo.hello.data::measurements";

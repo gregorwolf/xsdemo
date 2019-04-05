@@ -1,0 +1,5 @@
+schema = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+query = "SELECT *
+, TO_DECIMAL(\"valueDifference\" * 1000 / ( \"timeDifference\" / 3600 ), 10, 2 ) AS \"powerConsumption\"
+    FROM \"NEO_3KDKYA4JI7SBY1TZEVG6QA348\".\"s0001142741trial.xsdemo.hello.analytic::measurementsHourlyAverageDelta\"
+    WHERE \"unit\" = 'kWh';";

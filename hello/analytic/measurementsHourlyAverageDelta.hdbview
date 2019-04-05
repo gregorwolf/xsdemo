@@ -1,0 +1,5 @@
+schema = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+query = "SELECT *
+, ABS(SECONDS_BETWEEN (\"storedAt\",  LAG(\"storedAt\", 1) OVER (ORDER BY \"sensorId\", \"storedAt\"))) AS \"timeDifference\"
+, TO_DECIMAL(\"value\" - LAG (\"value\", 1) OVER ( ORDER BY \"sensorId\", \"storedAt\"), 10, 2) AS \"valueDifference\"
+    FROM \"NEO_3KDKYA4JI7SBY1TZEVG6QA348\".\"s0001142741trial.xsdemo.hello.analytic::measurementsHourlyAverage\";";

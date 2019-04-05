@@ -1,0 +1,38 @@
+service {
+    "s0001142741trial.xsdemo.hello.data::sensors" 
+        navigates ("sensor_measurements" as "sensor_measurements", "last_measurement" as "last_measurement")
+		create using "s0001142741trial.xsdemo.hello.odata:jsexit.xsjslib::insert_sensor";
+
+    "s0001142741trial.xsdemo.hello.data::measurements"
+		create using "s0001142741trial.xsdemo.hello.procedures::insertMeasurement";
+
+    association "sensor_measurements" principal "sensors"("id") multiplicity "1"
+        dependent "measurements"("sensorId") multiplicity "*";
+    association "last_measurement" principal "sensors"("lastMeasurement") multiplicity "1"
+        dependent "measurements"("id") multiplicity "1";
+
+    "s0001142741trial.xsdemo.hello.analytic::measurementsMontlyAverage" 
+        as "measurementsMontlyAverage" key ("sensorId", "storedAt")
+        create forbidden 
+        update forbidden
+        delete forbidden;
+
+    "s0001142741trial.xsdemo.hello.analytic::measurementsHourlyAverage" 
+        as "measurementsHourlyAverage" key ("sensorId", "storedAt")
+        create forbidden 
+        update forbidden
+        delete forbidden;
+    "s0001142741trial.xsdemo.hello.analytic::measurementsHourlyAverageDelta" 
+        as "measurementsHourlyAverageDelta" key ("sensorId", "storedAt")
+        create forbidden 
+        update forbidden
+        delete forbidden;
+    "s0001142741trial.xsdemo.hello.analytic::measurementsHourlyAveragePowerConsumption" 
+        as "measurementsHourlyAveragePowerConsumption" key ("sensorId", "storedAt")
+        create forbidden 
+        update forbidden
+        delete forbidden;
+}
+annotations {
+   enable OData4SAP;
+}

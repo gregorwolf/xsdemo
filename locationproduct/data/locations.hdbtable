@@ -1,0 +1,14 @@
+table.schemaName = "NEO_3KDKYA4JI7SBY1TZEVG6QA348";
+table.tableType = COLUMNSTORE;
+table.description = "Locations";
+table.columns = [
+          {name = "id";          sqlType = BIGINT;    nullable = false;},
+          {name = "plant";       sqlType = NVARCHAR;  nullable = false; length=50;},
+          {name = "hall";        sqlType = NVARCHAR;  nullable = false; length=50;},
+          {name = "room";        sqlType = NVARCHAR;  nullable = false; length=50;},
+          {name = "track";       sqlType = NVARCHAR;  nullable = true; length=50;},
+          {name = "userName";    sqlType = NVARCHAR;  nullable = true; length=256;},
+          {name = "createdAt";   sqlType = TIMESTAMP; nullable = true;},
+          {name = "changedAt";   sqlType = TIMESTAMP; nullable = true;}
+];
+table.primaryKey.pkcolumns = ["id"];
